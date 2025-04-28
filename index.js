@@ -1,3 +1,5 @@
+module.exports = Phrase;
+
 // reverse()メソッドを追加してすべてのStringで使えるようにする
 String.prototype.reverse = function() {
     return Array.from(this).reverse().join("");
@@ -20,9 +22,3 @@ function Phrase(content) {
     return this.processedContent() === this.processedContent().reverse()
  }}
     
-String.prototype.blank = function() {
-    return /^\s+$/.test(this)
-}
-Array.prototype.last = function() {
-    return this[this.length -1]
-}

@@ -8,17 +8,20 @@ String.prototype.reverse = function() {
 function Phrase(content) {
     // キー名ををcontentとするプロパティを定義し、引数を値として入れる
     this.content = content;
-    // 文字列を小文字に変換する
-    this.processor = function processor(string) {
-        return string.toLowerCase();
-    }
+
     // パリンドロームのテスト用に変換したcontentを返す
     this.processedContent = function processedContent() {
-        return this.processor(this.content);
+        return this.letters().toLowerCase();
+    }
+
+    // コンテンツの文字だけを返す
+    // 利用例:
+    //  new Phrase("Hello, world!").letters() === "Helloworld"
+    this.letters = function letters() {
+        return (this.content.match(/[a-z]/gi) || []).join("");
     }
     // パリンドロームならtrue、違うならfalseを返す
-        this.palindrome = function palindrome()
- {
-    return this.processedContent() === this.processedContent().reverse()
- }}
+    this.palindrome = function palindrome() {
+        return this.processedContent() === this.processedContent().reverse()
+     }}
     

@@ -1,7 +1,7 @@
 module.exports = Phrase;
 
 // reverse()メソッドを追加してすべてのStringで使えるようにする
-String.prototype.reverse = function() {
+String.prototype.reverse = function () {
     return Array.from(this).reverse().join("");
 }
 //  Phraseオブジェクトを定義する
@@ -18,10 +18,15 @@ function Phrase(content) {
     // 利用例:
     //  new Phrase("Hello, world!").letters() === "Helloworld"
     this.letters = function letters() {
-        return (this.content.match(/[a-z]/gi) || []).join("");
-    }
+        const letterRegex = /[a-z]/gi;
+        return Array.from(this.content).filter(c => c.match(letterRegex)).join("");
+    };
     // パリンドロームならtrue、違うならfalseを返す
     this.palindrome = function palindrome() {
-        return this.processedContent() === this.processedContent().reverse()
-     }}
-    
+        const content = this.processedContent();
+        if (content.length === 0) {
+            return false;            
+        }
+        return content === content.reverse();
+    };
+}
